@@ -7,6 +7,7 @@ import passport from 'passport';
 import { config } from './config';
 
 import route from './routers';
+import { connect } from './config/db';
 
 const app = express();
 app.use(
@@ -48,7 +49,7 @@ passport.deserializeUser(function (obj, cb) {
 });
 
 app.listen(config.port, async () => {
-	// await connect();
+	await connect();
 
 	console.log(`Server is running on http://localhost:${config.port}`);
 	console.log(`${config.env}`);
