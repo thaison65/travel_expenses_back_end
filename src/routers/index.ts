@@ -1,8 +1,8 @@
 import { Application } from 'express';
-import homeRouter from './home.route';
+import userRouter from './user.route';
 
 const route = (app: Application): void => {
-	app.use('/home', homeRouter);
+	app.use('/api/users', userRouter);
 };
 
 export default route;
