@@ -8,6 +8,7 @@ import { config } from './config';
 
 import route from './routers';
 import { connect } from './config/db';
+import { errorHandler } from './common/errors/errorHandler';
 
 const app = express();
 app.use(
@@ -28,7 +29,7 @@ app.use(express.json());
 app.use(
 	cors({
 		origin: ['localhost:3000'], // chỉ cho phép truy cập từ nguồn này
-		methods: ['GET', 'POST', 'PUT', 'DELETE'], // cho phép các phương thức này
+		methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATH'], // cho phép các phương thức này
 		allowedHeaders: ['Content-Type', 'Authorization', 'Accept-Language'], // cho phép các header này
 	})
 );
@@ -36,7 +37,7 @@ app.use(
 // HTTP logger dùng để không gõ lại lệnh npm start hay vì node index.js
 app.use(morgan('combined'));
 
-route(app); // Đường dẫn router đối tác
+route(app); // Đường dẫn router
 
 //Cấu hình serialize/deserialize cho Passport
 //Xác định cách Passport lưu trữ người dùng vào session (serialize)
@@ -48,9 +49,10 @@ passport.deserializeUser(function (obj, cb) {
 	cb(null, obj as any);
 });
 
+// middleware xử lý lỗi cuối cùng
+app.use(errorHandler);
+
 app.listen(config.port, async () => {
 	await connect();
-
-	console.log(`Server is running on http://localhost:${config.port}`);
-	console.log(`${config.env}`);
+	console.log(`Server is running on http://localhost:${config.port}, ${config.env}`);
 });
