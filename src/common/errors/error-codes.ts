@@ -12,6 +12,11 @@ export const ErrorCodes = {
 		message: 'Yêu cầu không hợp lệ',
 		status: 400,
 	},
+	ID_IS_REQUIRED: {
+		code: 'ERR_ID_IS_REQUIRED',
+		message: 'ID là bắt buộc',
+		status: 400,
+	},
 	UNAUTHORIZED: {
 		code: 'ERR_401',
 		message: 'Chưa xác thực',
@@ -30,22 +35,27 @@ export const ErrorCodes = {
 	NOT_SET_ADMIN: {
 		code: 'ERR_NOT_SET_ADMIN',
 		message: 'Người dùng không phải là admin',
-		status: 405,
+		status: 410,
 	},
 	WRONG_PASSWORD_FORMAT: {
 		code: 'ERR_WRONG_PASSWORD_FORMAT',
 		message: 'Mật khẩu không hợp lệ',
-		status: 406,
+		status: 411,
 	},
 	WRONG_USERNAME_FORMAT: {
 		code: 'ERR_WRONG_USERNAME_FORMAT',
 		message: 'Tên tài khoản không hợp lệ',
-		status: 407,
+		status: 412,
 	},
 	USERNAME_ALREADY_EXISTS: {
 		code: 'ERR_USERNAME_ALREADY_EXISTS',
 		message: 'Tài khoản đã tồn tại',
-		status: 408,
+		status: 413,
+	},
+	ACCOUNT_NOT_REGISTER: {
+		code: 'ERR_ACCOUNT_NOT_REGISTER',
+		message: 'Tài khoản chưa được đăng ký',
+		status: 413,
 	},
 	INTERNAL_SERVER_ERROR: {
 		code: 'ERR_500',
