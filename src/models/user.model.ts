@@ -12,6 +12,13 @@ export const getUserById = async (id: string) => {
 	return (rows as any[])[0];
 };
 
+export const getUserByUsername = async (username: string) => {
+	const [rows] = await pool.query('SELECT id, username, password FROM user WHERE username = ?', [
+		username,
+	]);
+	return (rows as any[])[0];
+};
+
 export const createUser = async (data: UserType) => {
 	const { id, name, username, password, image_url } = data;
 	const [result] = await pool.query(
